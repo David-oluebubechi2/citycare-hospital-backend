@@ -25,6 +25,7 @@ import { PatientNotesService } from '../patient-notes/patient-notes.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { CertificatesService } from '../certificates/certificates.service';
 import { DatabaseService } from '../database/database.service';
+import { getAllowedOrigins } from '../common/origins';
 
 interface AuthenticatedSocket extends Socket {
   userId?: string;
@@ -35,7 +36,7 @@ interface AuthenticatedSocket extends Socket {
 
 @WebSocketGateway({
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: getAllowedOrigins(),
     credentials: true,
   },
   namespace: '/',
